@@ -2,18 +2,14 @@
   "version": 2,
   "builds": [
     {
-      "src": "./src/index.ts",
-      "use": "@vercel/node",
-      "config": {
-        "buildCommand": "bun build src/index.ts --compile --outfile dist/index.js",
-        "installCommand": "bun install"
-      }
+      "src": "src/index.ts",
+      "use": "vercel-bun@latest"
     }
   ],
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "/src/index.ts"
+      "dest": "src/index.ts"
     }
   ]
 }
