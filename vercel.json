@@ -1,18 +1,20 @@
 {
   "version": 2,
-  "buildCommand": "bun install && bun run build",
-  "outputDirectory": "dist",
-  "installCommand": "bun install",
+  "buildCommand": "bun install",
   "builds": [
     {
-      "src": "dist/index.js",
-      "use": "@vercel/node"
+      "src": "src/index.ts",
+      "use": "@vercel/node",
+      "config": {
+        "runtime": "nodejs18.x"
+      }
     }
   ],
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "dist/index.js"
+      "dest": "src/index.ts",
+      "methods": ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"]
     }
   ]
 }

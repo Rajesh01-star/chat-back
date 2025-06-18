@@ -7,6 +7,8 @@ import * as pico from "picocolors";
 import userRoutes from "./routes/userRoutes";
 import { corsConfig } from "./lib/configs";
 
+const port = process.env.PORT || 3000;
+
 const betterAuth = new Elysia({ name: "better-auth" }).all(
   "/api/auth/*",
   ({ request }) => auth.handler(request)
@@ -18,12 +20,15 @@ const app = new Elysia()
   .use(logger())
   .use(betterAuth)
   .use(userRoutes)
-  .listen(process.env.PORT!, () => {
-    console.log(pico.cyan(`🦊 Elysia is running at ${process.env.PORT}`));
+  .listen(port, () => {
+    console.log(pico.cyan(`🦊 Elysia is running at ${port}`));
   });
 
 app.get("/health", () => {
   return {
-    message: "Fcuk Hello World",
+    message: "API is healthy",
+    timestamp: new Date().toISOString(),
   };
 });
+
+export default app;
