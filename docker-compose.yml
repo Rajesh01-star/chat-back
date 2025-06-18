@@ -1,0 +1,14 @@
+version: "3.8"
+
+services:
+  app:
+    image: practice
+    build:
+      context: .
+      dockerfile: Dockerfile
+    env_file:
+      - .env
+    environment:
+      - NODE_ENV=production
+    ports:
+      - "9000:9000"
